@@ -1,0 +1,16 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  color: #171324; }
+
+html {
+  scroll-behavior: smooth; }
+
+.hidden {
+  display: none; }
+
+.hidden-opacity {
+  opacity: 0; }
+
+.pointer {
+  cursor: pointer; }
