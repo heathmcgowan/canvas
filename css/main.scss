@@ -73,7 +73,7 @@ html {
     flex-grow: 1;
     label {
         font-weight: $font-semi-bold;
-        font-size: 16px;
+        font-size: 14px;
         width: 100%;
         text-align: center;
         margin: 10px 0;
@@ -96,11 +96,48 @@ html {
     }
 }
 
+#line-color-container, #rectangle-color-container, #circle-color-container {
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0;
+    label {
+        margin: 0 0 0 8px;
+        font-size: 14px;
+        width: 120px;
+    }
+    .jscolor {
+        width: 45px;
+        height: 35px;
+        font-size: 11px;
+        margin-right: 10px;
+    }
+}
+
+.checkbox-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    input {
+        margin: 0 5px 0 10px;
+        padding: 0;
+        width: 20px;
+        height: 20px;
+    }
+    label {
+        margin: 0;
+        text-align: left;
+        font-size: 12px !important;
+    }
+}
+
 .slider-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
     input {
         width: 80%;
         margin: 2px 5px 10px 5px;
@@ -148,6 +185,20 @@ html {
 
 #background-color-label {
     margin: 5px 0 0 0;
+}
+
+#btn-download {
+    text-decoration: none;
+    color: #FFFFFF;
+    background-color: rgba(95, 83, 204, 0.8);
+    border: 3px solid rgba(95, 83, 204, 0.3);
+    text-align: center;
+    padding: 10px;
+    margin: 5px;
+}
+
+#btn-download:hover {
+    opacity: 0.9;
 }
 
 // Modifiers

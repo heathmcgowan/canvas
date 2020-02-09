@@ -3,9 +3,15 @@ const controlPanel = document.getElementById('controls');
 const canvas = document.querySelector('canvas');
 var c = canvas.getContext('2d');
 var backgroundColor = "#000000";
+var lineColor = "#FFFFFF";
+var rectangleColor = "#FFFFFF";
+var circleColor = "#FFFFFF";
 var linesEnabled = false;
 var circlesEnabled = false;
 var rectanglesEnabled = false;
+var randomLineColor = true;
+var randomRectangleColor = true;
+var randomCircleColor = true;
 var lineSpeed = 50;
 var rectangleSpeed = 50;
 var circleSpeed = 50;
@@ -13,6 +19,10 @@ var strokeMin = 0.05;
 var strokeMax = 3;
 var radMin = 1;
 var radMax = 50;
+var rectWidthMin = 1;
+var rectWidthMax = 50;
+var rectHeightMin = 1;
+var rectHeightMax = 50;
 
 hideControlsBtn.addEventListener('click', function() {
     if (controlPanel.classList.contains('controls-hidden')) {
@@ -41,16 +51,6 @@ function getRandomX() {
 function getRandomY() {
     var y = (Math.random() * window.innerHeight);
     return y;
-}
-
-function getRandomDimension() {
-    var dimension = (Math.random() * 40);
-    return dimension;
-}
-
-function getRandomStrokeWidth() {
-    var strokeWidth = (Math.random() * 0.1);
-    return strokeWidth;
 }
 
 function getRandomNumber() {
@@ -89,7 +89,11 @@ function drawLines() {
             for (var z = 0; z < (Math.random() * 4); z++) {
                 c.lineTo(getRandomX(), getRandomY());
             };
-            c.strokeStyle = getRandomColor();
+            if (randomLineColor == true) {
+                c.strokeStyle = getRandomColor();
+            } else {
+                c.strokeStyle = lineColor;
+            };
             c.lineWidth = randomIntFromInterval(strokeMin, strokeMax);
             c.stroke();
         };
@@ -98,19 +102,29 @@ function drawLines() {
 
 function drawRectangles() {
     if (rectanglesEnabled == true) {
+        if (randomRectangleColor == true) {
+            var fillColor = getRandomColor();
+        } else {
+            var fillColor = rectangleColor;
+        };
         for (var i = 0; i < getRandomNumber(); i++) {
-            c.fillStyle = getRandomColor();
-            c.fillRect(getRandomX(), getRandomY(), getRandomDimension(), getRandomDimension());
+            c.fillStyle = fillColor;
+            c.fillRect(getRandomX(), getRandomY(), randomIntFromInterval(rectWidthMin, rectWidthMax), randomIntFromInterval(rectHeightMin, rectHeightMax));
         };
     };
 };
 
 function drawCircles() {
     if (circlesEnabled == true) {
+        if (randomCircleColor == true) {
+            var fillColor = getRandomColor();
+        } else {
+            var fillColor = circleColor;
+        };
         for (var i = 0; i < getRandomNumber(); i++) {
             c.beginPath();
             c.arc(getRandomX(), getRandomY(), randomIntFromInterval(radMin, radMax), 0, Math.PI * 2, false);
-            c.fillStyle = getRandomColor();
+            c.fillStyle = fillColor;
             c.fill();
         };
     };
@@ -122,6 +136,9 @@ function drawCircles() {
 var colorPicker = document.querySelectorAll('.jscolor');
 var controlButton = document.querySelectorAll('.control-button');
 var slider = document.querySelectorAll('.slider');
+var randomLineColorCheckbox = document.getElementById('random-line-color-checkbox');
+var randomRectangleColorCheckbox = document.getElementById('random-rectangle-color-checkbox');
+var randomCircleColorCheckbox = document.getElementById('random-circle-color-checkbox');
 
 colorPicker.forEach(input => input.addEventListener('change', updateColor));
 controlButton.forEach(input => input.addEventListener('click', controlButtonClicked));
@@ -134,8 +151,38 @@ function updateColor() {
         backgroundColor = `#${selectedColor}`;
         c.fillStyle = backgroundColor;
         c.fillRect(0, 0, canvas.width, canvas.height);
+    } else if (contentToColor == 'line-color') {
+        lineColor = `#${selectedColor}`;
+    } else if (contentToColor == 'rectangle-color') {
+        rectangleColor = `#${selectedColor}`;
+    } else if (contentToColor == 'circle-color') {
+        circleColor = `#${selectedColor}`;
     };
 }
+
+randomLineColorCheckbox.addEventListener('change', function() {
+    if (this.checked) {
+        randomLineColor = true;
+    } else {
+        randomLineColor = false;
+    };
+});
+
+randomRectangleColorCheckbox.addEventListener('change', function() {
+    if (this.checked) {
+        randomRectangleColor = true;
+    } else {
+        randomRectangleColor = false;
+    };
+});
+
+randomCircleColorCheckbox.addEventListener('change', function() {
+    if (this.checked) {
+        randomCircleColor = true;
+    } else {
+        randomCircleColor = false;
+    };
+});
 
 function controlButtonClicked() {
     let clickedButton = this.dataset.buttontype;
@@ -146,7 +193,7 @@ function controlButtonClicked() {
         rectanglesEnabled = !rectanglesEnabled;
     } else if (clickedButton == 'circles') {
         circlesEnabled = !circlesEnabled;
-    }
+    };
 }
 
 function updateButtonClass(clickedButton) {
@@ -166,6 +213,10 @@ function sliderChanged() {
         strokeMax = sliderValue;
     } else if (sliderType == 'radius-max') {
         radMax = sliderValue;
+    } else if (sliderType == 'rect-width-max') {
+        rectWidthMax = sliderValue;
+    } else if (sliderType == 'rect-height-max') {
+        rectHeightMax = sliderValue;
     } else if (sliderType == 'line-speed') {
         document.getElementById(`${sliderType}-value`).innerHTML = 101 - sliderValue;
         clearInterval(lineLoop);
@@ -189,3 +240,8 @@ function sliderChanged() {
         }, circleSpeed);
     };
 }
+var button = document.getElementById('btn-download');
+button.addEventListener('click', function (e) {
+    var dataURL = canvas.toDataURL('image/png');
+    button.href = dataURL;
+});

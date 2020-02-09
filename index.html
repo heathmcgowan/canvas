@@ -22,7 +22,15 @@
             <input id="background-color" class="jscolor" value="000000" name="background-color" data-contenttocolor="background">
         </span>
         <span class="control-container unselectable">
-            <div class="control-button pointer" data-buttontype="lines">Enable Lines</div>
+            <div class="control-button pointer" data-buttontype="lines">Generate Lines</div>
+            <span id="line-color-container" class="control-container unselectable">
+                <label for="line-color" id="line-color-label">Line Color</label>
+                <input id="line-color" class="jscolor" value="FFFFFF" name="line-color" data-contenttocolor="line-color">
+                <div class="checkbox-container">
+                    <input type="checkbox" name="random-line-color-checkbox" id="random-line-color-checkbox" checked>
+                    <label for="random-line-color-checkbox">Random</label>
+                </div>
+            </span>
             <span class="slider-container">
                 <label for="slider-stroke-max">Max Line Width</label>
                 <input type="range" name="slider-stroke-max" min="0.05" max="20" value="2" step="0.05" id="slider-stroke-max" class="slider" data-slidertype="stroke-max" data-suffix="">
@@ -35,7 +43,25 @@
             </span>
         </span>
         <span class="control-container unselectable">
-            <div class="control-button pointer" data-buttontype="rectangles">Enable Rectangles</div>
+            <div class="control-button pointer" data-buttontype="rectangles">Generate Rectangles</div>
+            <span id="rectangle-color-container" class="control-container unselectable">
+                <label for="rectangle-color" id="rectangle-color-label">Rectangle Color</label>
+                <input id="rectangle-color" class="jscolor" value="FFFFFF" name="rectangle-color" data-contenttocolor="rectangle-color">
+                <div class="checkbox-container">
+                    <input type="checkbox" name="random-rectangle-color-checkbox" id="random-rectangle-color-checkbox" checked>
+                    <label for="random-rectangle-color-checkbox">Random</label>
+                </div>
+            </span>
+            <span class="slider-container">
+                <label for="slider-rect-width-max">Max Width</label>
+                <input type="range" name="slider-rect-width-max" min="1" max="1000" value="50" step="1" id="slider-rect-width-max" class="slider" data-slidertype="rect-width-max" data-suffix="">
+                <p id="rect-width-max-value">50</p>
+            </span>
+            <span class="slider-container">
+                <label for="slider-rect-height-max">Max Height</label>
+                <input type="range" name="slider-rect-height-max" min="1" max="1000" value="50" step="1" id="slider-rect-height-max" class="slider" data-slidertype="rect-height-max" data-suffix="">
+                <p id="rect-height-max-value">50</p>
+            </span>
             <span class="slider-container">
                 <label for="slider-rectangle-speed">Speed</label>
                 <input type="range" name="slider-rectangle-speed" min="1" max="100" value="50" step="1" id="slider-rectangle-speed" class="slider" data-slidertype="rectangle-speed" data-suffix="">
@@ -43,18 +69,27 @@
             </span>
         </span>
         <span class="control-container unselectable">
-            <div class="control-button pointer" data-buttontype="circles">Enable Circles</div>
-            <span class="slider-container">
-                <label for="slider-circle-speed">Speed</label>
-                <input type="range" name="slider-circle-speed" min="1" max="100" value="50" step="1" id="slider-circle-speed" class="slider" data-slidertype="circle-speed" data-suffix="">
-                <p id="circle-speed-value">50</p>
+            <div class="control-button pointer" data-buttontype="circles">Generate Circles</div>
+            <span id="circle-color-container" class="control-container unselectable">
+                <label for="circle-color" id="circle-color-label">Circle Color</label>
+                <input id="circle-color" class="jscolor" value="FFFFFF" name="circle-color" data-contenttocolor="circle-color">
+                <div class="checkbox-container">
+                    <input type="checkbox" name="random-circle-color-checkbox" id="random-circle-color-checkbox" checked>
+                    <label for="random-circle-color-checkbox">Random</label>
+                </div>
             </span>
             <span class="slider-container">
                 <label for="slider-radius-max">Max Radius</label>
                 <input type="range" name="slider-radius-max" min="1" max="1000" value="100" step="1" id="slider-radius-max" class="slider" data-slidertype="radius-max" data-suffix="">
                 <p id="radius-max-value">100</p>
             </span>
+            <span class="slider-container">
+                <label for="slider-circle-speed">Speed</label>
+                <input type="range" name="slider-circle-speed" min="1" max="100" value="50" step="1" id="slider-circle-speed" class="slider" data-slidertype="circle-speed" data-suffix="">
+                <p id="circle-speed-value">50</p>
+            </span>
         </span>
+        <a href="#" id="btn-download" download="canvas.png">Download Image</a>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="js/jscolor.js"></script>
