@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html lang="en" class="no-js">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> </title>
+    <title>Canvas</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
@@ -13,8 +13,51 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    
+    <canvas></canvas>
+    <div id="controls">
+        <div id="hide-controls">Hide</div>
+        <span id="background-color-container" class="control-container unselectable">
+            <label for="background-color" id="background-color-label">Background Color</label>
+            <p id="background-color-warning">changing this will reset the canvas</p>
+            <input id="background-color" class="jscolor" value="000000" name="background-color" data-contenttocolor="background">
+        </span>
+        <span class="control-container unselectable">
+            <div class="control-button pointer" data-buttontype="lines">Enable Lines</div>
+            <span class="slider-container">
+                <label for="slider-stroke-max">Max Line Width</label>
+                <input type="range" name="slider-stroke-max" min="0.05" max="20" value="2" step="0.05" id="slider-stroke-max" class="slider" data-slidertype="stroke-max" data-suffix="">
+                <p id="stroke-max-value">2</p>
+            </span>
+            <span class="slider-container">
+                <label for="slider-line-speed">Speed</label>
+                <input type="range" name="slider-line-speed" min="1" max="100" value="50" step="1" id="slider-line-speed" class="slider" data-slidertype="line-speed" data-suffix="">
+                <p id="line-speed-value">50</p>
+            </span>
+        </span>
+        <span class="control-container unselectable">
+            <div class="control-button pointer" data-buttontype="rectangles">Enable Rectangles</div>
+            <span class="slider-container">
+                <label for="slider-rectangle-speed">Speed</label>
+                <input type="range" name="slider-rectangle-speed" min="1" max="100" value="50" step="1" id="slider-rectangle-speed" class="slider" data-slidertype="rectangle-speed" data-suffix="">
+                <p id="rectangle-speed-value">50</p>
+            </span>
+        </span>
+        <span class="control-container unselectable">
+            <div class="control-button pointer" data-buttontype="circles">Enable Circles</div>
+            <span class="slider-container">
+                <label for="slider-circle-speed">Speed</label>
+                <input type="range" name="slider-circle-speed" min="1" max="100" value="50" step="1" id="slider-circle-speed" class="slider" data-slidertype="circle-speed" data-suffix="">
+                <p id="circle-speed-value">50</p>
+            </span>
+            <span class="slider-container">
+                <label for="slider-radius-max">Max Radius</label>
+                <input type="range" name="slider-radius-max" min="1" max="1000" value="100" step="1" id="slider-radius-max" class="slider" data-slidertype="radius-max" data-suffix="">
+                <p id="radius-max-value">100</p>
+            </span>
+        </span>
+    </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="js/jscolor.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
