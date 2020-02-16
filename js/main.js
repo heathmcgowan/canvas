@@ -175,10 +175,16 @@ function updateColor() {
         c.fillRect(0, 0, canvas.width, canvas.height);
     } else if (contentToColor == 'line-color') {
         lineColor = `#${selectedColor}`;
+        randomLineColor = false;
+        randomLineColorCheckbox.checked = false;
     } else if (contentToColor == 'rectangle-color') {
         rectangleColor = `#${selectedColor}`;
+        randomRectangleColor = false;
+        randomRectangleColorCheckbox.checked = false;
     } else if (contentToColor == 'circle-color') {
         circleColor = `#${selectedColor}`;
+        randomCircleColor = false;
+        randomCircleColorCheckbox.checked = false;
     };
 }
 
