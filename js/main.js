@@ -2,6 +2,8 @@ const hideControlsBtn = document.getElementById('hide-controls');
 const controlPanel = document.getElementById('controls');
 const canvas = document.querySelector('canvas');
 var c = canvas.getContext('2d');
+var canvasWidth = 1920;
+var canvasHeight = 1080;
 var backgroundColor = "#000000";
 var lineColor = "#FFFFFF";
 var rectangleColor = "#FFFFFF";
@@ -16,9 +18,13 @@ var lineSpeed = 50;
 var rectangleSpeed = 50;
 var circleSpeed = 50;
 var strokeMin = 0.05;
-var strokeMax = 3;
+var strokeMax = 2;
 var radMin = 1;
 var radMax = 50;
+var circleStrokeWidth = 2;
+var rectangleStrokeWidth = 2;
+var filledCircles = false;
+var filledRectangles = false;
 var rectWidthMin = 1;
 var rectWidthMax = 50;
 var rectHeightMin = 1;
@@ -44,12 +50,12 @@ function getRandomColor() {
 }
 
 function getRandomX() {
-    var x = (Math.random() * window.innerWidth);
+    var x = (Math.random() * (canvasWidth + 200)) - 100;
     return x;
 }
 
 function getRandomY() {
-    var y = (Math.random() * window.innerHeight);
+    var y = (Math.random() * (canvasHeight + 200)) - 100;
     return y;
 }
 
@@ -64,8 +70,8 @@ function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min) / 100;    
 }
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = canvasWidth;
+canvas.height = canvasHeight;
 c.fillStyle = backgroundColor;
 c.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -108,8 +114,14 @@ function drawRectangles() {
             var fillColor = rectangleColor;
         };
         for (var i = 0; i < getRandomNumber(); i++) {
-            c.fillStyle = fillColor;
-            c.fillRect(getRandomX(), getRandomY(), randomIntFromInterval(rectWidthMin, rectWidthMax), randomIntFromInterval(rectHeightMin, rectHeightMax));
+            if (filledRectangles == true) {
+                c.fillStyle = fillColor;
+                c.fillRect(getRandomX(), getRandomY(), randomIntFromInterval(rectWidthMin, rectWidthMax), randomIntFromInterval(rectHeightMin, rectHeightMax));    
+            } else {
+                c.strokeStyle = fillColor;
+                c.lineWidth = rectangleStrokeWidth;
+                c.strokeRect(getRandomX(), getRandomY(), randomIntFromInterval(rectWidthMin, rectWidthMax), randomIntFromInterval(rectHeightMin, rectHeightMax));
+            };
         };
     };
 };
@@ -122,10 +134,18 @@ function drawCircles() {
             var fillColor = circleColor;
         };
         for (var i = 0; i < getRandomNumber(); i++) {
-            c.beginPath();
-            c.arc(getRandomX(), getRandomY(), randomIntFromInterval(radMin, radMax), 0, Math.PI * 2, false);
-            c.fillStyle = fillColor;
-            c.fill();
+            if (filledCircles == true) {
+                c.beginPath();
+                c.arc(getRandomX(), getRandomY(), randomIntFromInterval(radMin, radMax), 0, Math.PI * 2, false);
+                c.fillStyle = fillColor;
+                c.fill();      
+            } else {
+                c.beginPath();
+                c.arc(getRandomX(), getRandomY(), randomIntFromInterval(radMin, radMax), 0, Math.PI * 2, false);
+                c.strokeStyle = fillColor;
+                c.lineWidth = circleStrokeWidth;
+                c.stroke();
+            };
         };
     };
 };
@@ -139,6 +159,8 @@ var slider = document.querySelectorAll('.slider');
 var randomLineColorCheckbox = document.getElementById('random-line-color-checkbox');
 var randomRectangleColorCheckbox = document.getElementById('random-rectangle-color-checkbox');
 var randomCircleColorCheckbox = document.getElementById('random-circle-color-checkbox');
+var fillCircleCheckbox = document.getElementById('fill-circle-checkbox');
+var fillRectangleCheckbox = document.getElementById('fill-rectangle-checkbox');
 
 colorPicker.forEach(input => input.addEventListener('change', updateColor));
 controlButton.forEach(input => input.addEventListener('click', controlButtonClicked));
@@ -184,6 +206,22 @@ randomCircleColorCheckbox.addEventListener('change', function() {
     };
 });
 
+fillCircleCheckbox.addEventListener('change', function() {
+    if (this.checked) {
+        filledCircles = true;
+    } else {
+        filledCircles = false;
+    };
+});
+
+fillRectangleCheckbox.addEventListener('change', function() {
+    if (this.checked) {
+        filledRectangles = true;
+    } else {
+        filledRectangles = false;
+    };
+});
+
 function controlButtonClicked() {
     let clickedButton = this.dataset.buttontype;
     updateButtonClass(this);
@@ -211,6 +249,10 @@ function sliderChanged() {
     document.getElementById(`${sliderType}-value`).innerHTML = sliderValue + suffix;
     if (sliderType == 'stroke-max') {
         strokeMax = sliderValue;
+    } else if (sliderType == 'circle-stroke-width') {
+        circleStrokeWidth = sliderValue;
+    } else if (sliderType == 'rectangle-stroke-width') {
+        rectangleStrokeWidth = sliderValue;
     } else if (sliderType == 'radius-max') {
         radMax = sliderValue;
     } else if (sliderType == 'rect-width-max') {

@@ -30,7 +30,9 @@ html {
 }
 
 // Canvas
-
+#canvas {
+    width: 100vw;
+}
 
 // Controls
 #controls {
@@ -73,10 +75,10 @@ html {
     flex-grow: 1;
     label {
         font-weight: $font-semi-bold;
-        font-size: 14px;
+        font-size: 12px;
         width: 100%;
         text-align: center;
-        margin: 10px 0;
+        margin: 5px 0 10px 0;
     }
     input {
         width: 100%;
@@ -92,7 +94,7 @@ html {
     flex-grow: 0;
     border: none;
     input {
-        height: 100px;
+        height: 50px;
     }
 }
 
@@ -103,15 +105,14 @@ html {
     flex-direction: row;
     padding: 10px 0;
     label {
-        margin: 0 0 0 8px;
+        margin: 0 8px 0 0;
         font-size: 14px;
-        width: 120px;
+        width: 65px;
     }
     .jscolor {
         width: 45px;
         height: 35px;
         font-size: 11px;
-        margin-right: 10px;
     }
 }
 
@@ -139,8 +140,13 @@ html {
     width: 100%;
     background-color: rgba(0, 0, 0, 0.1);
     input {
-        width: 80%;
+        width: 87%;
         margin: 2px 5px 10px 5px;
+    }
+    label {
+        width: 87%;
+        margin: 10px 5px 5px 5px;
+        text-align: center;
     }
     p {
         width: 30px;
@@ -189,9 +195,10 @@ html {
 
 #btn-download {
     text-decoration: none;
-    color: #FFFFFF;
-    background-color: rgba(95, 83, 204, 0.8);
-    border: 3px solid rgba(95, 83, 204, 0.3);
+    color: #171324;
+    background-color: rgba(0, 160, 46, 0.8);
+    border: 3px solid rgba(0, 160, 46, 0.3);
+    font-weight: $font-medium;
     text-align: center;
     padding: 10px;
     margin: 5px;
@@ -230,16 +237,16 @@ html {
     }
     
     input[type='range']::-webkit-slider-runnable-track {
-      height: 15px;
+      height: 10px;
       -webkit-appearance: none;
       color: rgba(95, 83, 204, 0.8);
     }
     
     input[type='range']::-webkit-slider-thumb {
-      width: 15px;
+      width: 10px;
       -webkit-appearance: none;
-      margin-top: -7.5px;
-      height: 30px;
+      margin-top: -5px;
+      height: 20px;
       cursor: ew-resize;
       background: #000000;
     }

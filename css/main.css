@@ -7,6 +7,9 @@ body {
 html {
   scroll-behavior: smooth; }
 
+#canvas {
+  width: 100vw; }
+
 #controls {
   background-color: rgba(255, 255, 255, 0.9);
   position: absolute;
@@ -43,10 +46,10 @@ html {
   flex-grow: 1; }
   .control-container label {
     font-weight: 600;
-    font-size: 14px;
+    font-size: 12px;
     width: 100%;
     text-align: center;
-    margin: 10px 0; }
+    margin: 5px 0 10px 0; }
   .control-container input {
     width: 100%;
     border: none;
@@ -58,7 +61,7 @@ html {
   flex-grow: 0;
   border: none; }
   #background-color-container input {
-    height: 100px; }
+    height: 50px; }
 
 #line-color-container, #rectangle-color-container, #circle-color-container {
   background-color: rgba(0, 0, 0, 0.1);
@@ -67,14 +70,13 @@ html {
   flex-direction: row;
   padding: 10px 0; }
   #line-color-container label, #rectangle-color-container label, #circle-color-container label {
-    margin: 0 0 0 8px;
+    margin: 0 8px 0 0;
     font-size: 14px;
-    width: 120px; }
+    width: 65px; }
   #line-color-container .jscolor, #rectangle-color-container .jscolor, #circle-color-container .jscolor {
     width: 45px;
     height: 35px;
-    font-size: 11px;
-    margin-right: 10px; }
+    font-size: 11px; }
 
 .checkbox-container {
   display: flex;
@@ -97,8 +99,12 @@ html {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.1); }
   .slider-container input {
-    width: 80%;
+    width: 87%;
     margin: 2px 5px 10px 5px; }
+  .slider-container label {
+    width: 87%;
+    margin: 10px 5px 5px 5px;
+    text-align: center; }
   .slider-container p {
     width: 30px; }
 
@@ -137,9 +143,10 @@ html {
 
 #btn-download {
   text-decoration: none;
-  color: #FFFFFF;
-  background-color: rgba(95, 83, 204, 0.8);
-  border: 3px solid rgba(95, 83, 204, 0.3);
+  color: #171324;
+  background-color: rgba(0, 160, 46, 0.8);
+  border: 3px solid rgba(0, 160, 46, 0.3);
+  font-weight: 500;
   text-align: center;
   padding: 10px;
   margin: 5px; }
@@ -169,14 +176,14 @@ html {
     background-color: rgba(95, 83, 204, 0.8);
     outline: none; }
   input[type='range']::-webkit-slider-runnable-track {
-    height: 15px;
+    height: 10px;
     -webkit-appearance: none;
     color: rgba(95, 83, 204, 0.8); }
   input[type='range']::-webkit-slider-thumb {
-    width: 15px;
+    width: 10px;
     -webkit-appearance: none;
-    margin-top: -7.5px;
-    height: 30px;
+    margin-top: -5px;
+    height: 20px;
     cursor: ew-resize;
     background: #000000; } }
 
